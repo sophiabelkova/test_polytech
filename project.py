@@ -1,17 +1,17 @@
 #класс, определение и вызов функций генерации тегов и последующего объединения в готовый файл.
-#name-название тега,  border-cкобки, позволяющие добавлять другие теги внутрь главного, стили сss , id для css, content-то что будет написано, href-ссфлки
+#name-название тега,  border-cкобки, позволяющие добавлять другие теги внутрь главного, content-то что будет написано, href-ссылки, классы и т д
 #функция generate пока тэг в границах тега выводим res повторяем функцию
+#функция генерации файла открывает файл page только для записи в него функции генерации тегов и закрывает файл.
 class Tag:
     def __init__(self):
         self.name = "name"
         self.content = ""
         self.href = ""
         self.border = []
-        self.clas = "style"
        
         
     def Generate(self):
-        res = "<"+self.name+" "+self.clas+" "+self.href+">"+self.content+" \n"
+        res = "<"+self.name+" "+self.href+">"+self.content+" \n"
         for tag in self.border:
             res = res+tag.Generate()
         res = res+"</"+self.name+"> \n"
@@ -21,15 +21,14 @@ class Tag:
 class Html(Tag):
     def __init__(self, data):
         Tag.__init__(self)
+        self.name = "html"
         self.border = data
-        self.name = "head"
     pass
-
 #2 <head>
 class Head(Tag):
     def __init__(self, data):
         Tag.__init__(self)
-        self.name = "html"
+        self.name = "head"
         self.border = data
     pass
 #3 <title>
@@ -48,12 +47,10 @@ class Body(Tag):
     pass
 #5 <div>
 class Div(Tag):
-    def __init__(self, data, text):
+    def __init__(self, data):
         Tag.__init__(self)
         self.name = "div"
         self.border = data
-        self.clas = "class"
-        self.content = text
     pass
 #6 <header>
 class Header(Tag):
@@ -70,35 +67,29 @@ class Footer(Tag):
         self.border = data
     pass
 #8 <span>
-class Span(Tag):
-    def __init__(self):
-        Tag.__init__(self)
-        self.name = "span"
-        self.clas = "class"
-    pass
+#
 #9 <link>
-class Link(Tag):
-    def __init__(self):
-        Tag.__init__(self)
-        self.name = "link"
-        self.href = "href"
-        self.clas = "style"
-    pass
+# class Link(Tag):
+#     def __init__(self, href):
+#         Tag.__init__(self)
+#         self.name = "link"
+#         self.href = href
+#     pass
 #10 <a>
 class A(Tag):
-    def __init__(self,text):
+    def __init__(self,text, href):
         Tag.__init__(self)
         self.name = "a"
         self.content = text
-        self.href = "href"
+        self.href = href
     pass
 #11 <style>
 class Style(Tag):
-    def __init__(self, text):
+    def __init__(self, text, href):
         Tag.__init__(self)
         self.name = "style"
         self.content = text
-        self.clas = "style"
+        self.href = href
     pass
 #12 <br/>
 class Br(Tag):
@@ -119,41 +110,41 @@ class Center(Tag):
     pass
 #создание самой страницы.
 ht = Html([
-             Head([
+           Head([
                    Title(" "),
-                   Style(" ", " ")
+                  Style(" ", " ")
                    ]),
              Body([
                    Div([
                         Header([
-                        A(" ", " ", " "),
-                        Span([
-                              A(" ", " ", " ")
-                              ]),
-                        Span([
-                              A(" ", " ", " ")
-                              ]),
-                        Span([
-                              A(" ", " ", " ")
-                              ])
+                        A(" ", " "),
+                       
+                              A(" ", " "),
+                              
+                       
+                              A(" ", " "),
+                         
+                        
+                              A(" ", " ")
+                          
                         ]),
                         Div([Br()]),
                         Center([
-                                Div(" ", [Hr()]),
+                                Div([Hr()]),
                                 Div([
-                                     A(" ", " ", " "),
-                                     A(" ", " ", " "),
-                                     A(" ", " ", " "),
-                                     A(" ", " ", " ")
+                                     A(" ", " "),
+                                     A(" ", " "),
+                                     A(" ", " "),
+                                    A(" ", " ")
                                      ])
                                 ])
                         ]),
                    Footer([
-                           Span(" ")
+                           A(" ", " ")
                            ])
-                   ])
-             ])
-print(ht.Generate())             
+                    ])
+              ])
+print(ht.Generate())          
                                      
                         
             
