@@ -21,8 +21,7 @@ class Tag:
     def GenerateFile(self, file):
         file = open(file, "w")
         file.write(self.Generate())
-        file.close
-
+        file.close()
     pass
 #экземпляры класса использующие только атрибут дата
 #1 <html>
@@ -243,7 +242,8 @@ ht = Html([
                            ])
                     ])
               ])
-print(ht.Generate())          
+print(ht.Generate())
+ht.GenerateFile("file.html")
                                      
                         
             
