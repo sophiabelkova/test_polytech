@@ -1,7 +1,7 @@
 #класс, определение и вызов функций генерации тегов и последующего объединения в готовый файл.
 #name-название тега,  border-cкобки, позволяющие добавлять другие теги внутрь главного, content-то что будет написано, href-ссылки, классы и т д
 #функция generate пока тэг в границах тега выводим res повторяем функцию
-#функция генерации файла открывает файл page только для записи в него функции генерации тегов и закрывает файл.
+#функция генерации файла открывает файл file только для записи в него функции генерации тегов и закрывает файл.
 class Tag:
     def __init__(self):
         self.name = "name"
@@ -38,65 +38,70 @@ class Head(Tag):
         self.name = "head"
         self.border = data
     pass
-#4 <body>
+#3 <body>
 class Body(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "body"
         self.border = data
     pass
-#13 <center>
+#4 <center>
 class Center(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "center"
         self.border = data
     pass
+#5 <strong>
 class Strong(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "strong"
         self.border = data
     pass
+#6 <em>
 class Em(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "em"
         self.border = data
     pass
+#7 <ol>
 class Ol(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "ol"
         self.border = data
     pass
+#8 <ul>
 class Ul(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "ul"
         self.border = data
     pass
+#9 <li>
 class Li(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "li"
         self.border = data
     pass
-#5 <div>
+#10 <div>
 class Div(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "div"
         self.border = data
     pass
-#6 <header>
+#11 <header>
 class Header(Tag):
     def __init__(self, data):
         Tag.__init__(self)
         self.name = "header"
         self.border = data
     pass
-#7 <footer>
+#12 <footer>
 class Footer(Tag):
     def __init__(self, data):
         Tag.__init__(self)
@@ -104,7 +109,7 @@ class Footer(Tag):
         self.border = data
     pass
 #экземпляры класса использующие только атрибут текст
-#8 <h1,2,3>
+#13,14,15 <h1,2,3>
 class H1(Tag):
     def __init__(self,text, href, typ):
         Tag.__init__(self)
@@ -125,13 +130,14 @@ class H3(Tag):
         self.name = "h3"
         self.content = text
     pass
+#16 <p>
 class P(Tag):
     def __init__(self,text, href):
         Tag.__init__(self)
         self.name = "p"
         self.content = text
     pass
-#3 <title>
+#17 <title>
 class Title(Tag):
     def __init__(self,text):
         Tag.__init__(self)
@@ -139,12 +145,12 @@ class Title(Tag):
         self.content = text
     pass
 #экземпляры класса использующие только атрибут имя
-#12 <br/>
+#18 <br/>
 class Br(Tag):
     def __init__(self):
         Tag.__init__(self)
         self.name = "br"
-#13 <hr/>
+#19 <hr/>
 class Hr(Tag):
     def __init__(self):
         Tag.__init__(self)
@@ -153,7 +159,7 @@ class Hr(Tag):
 #экземпляры класса использующие много чего
 #9 <link>
 
-#10 <a>
+#20 <a>
 class A(Tag):
     def __init__(self,text, href):
         Tag.__init__(self)
@@ -162,7 +168,7 @@ class A(Tag):
         self.href = href
     pass
 
-#11 <style>
+#21 <style>
 class Style(Tag):
     def __init__(self, text, href):
         Tag.__init__(self)
@@ -170,6 +176,7 @@ class Style(Tag):
         self.content = text
         self.href = href
     pass
+#22 <img>
 class Img(Tag):
     def __init__(self, href):
         Tag.__init__(self)
@@ -242,6 +249,7 @@ ht = Html([
                            ])
                     ])
               ])
+#генерация кода и вызов функции записывающей его в файл
 print(ht.Generate())
 ht.GenerateFile("file.html")
                                      
